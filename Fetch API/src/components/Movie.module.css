@@ -1,0 +1,54 @@
+/* .button {
+  color: white;
+  border: 1px solid #f1f1f1;
+  border-radius: 0px solid black;
+background-color: #4CAF50;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+button {
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
+  background-color: black;
+}
+
+button:hover,
+button:active {
+  background-color: rgba(239, 113, 34, 0.703);
+  color: aliceblue;
+} */
+
+/* movie {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #230052;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+}
+
+.movie h2 {
+  font-size: 2rem;
+  color: #f7e702;
+}
+
+.movie h3 {
+  color: #eccf77;
+  margin: 0;
+  font-size: 1rem;
+} */
+
+.movie {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
