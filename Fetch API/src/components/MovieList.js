@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./MovieList.module.css";
+import classes from './MovieList.module.css';
 import Movie from "./Movie";
 
 function MovieList(props) {
@@ -13,7 +13,7 @@ function MovieList(props) {
             releaseDate={movie.releaseDate}
             openingText={movie.openingText}
             directorName={movie.directorName}
-            
+
           />
         ))}
       </ul>

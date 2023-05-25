@@ -45,7 +45,6 @@ section {
   /* background-color: rgb(228, 224, 219); */
   width: 100%;
   align-items: center;
-  
 }
 
 .button {
@@ -64,3 +63,13 @@ section {
   background-color: #106c24;
   color: aliceblue;
 }
+
+/* p{
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  font-size: 1.5rem;
+  padding-bottom: 20px;
+  color: #130d0f;
+  border: 10px solid  #282c34;
+} */
