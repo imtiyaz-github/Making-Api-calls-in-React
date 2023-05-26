@@ -1,83 +1,100 @@
 import React, { useState, useEffect } from "react";
-import MovieList from "./components/MovieList";
-import "./App.css";
+// import MovieList from "./components/MovieList";
+// import "./App.css";
 
 function App() {
-  const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [retryCount, setRetryCount] = useState(0);
-  const [retryTimer, setRetryTimer] = useState(null);
+  //   const [movies, setMovies] = useState([]);
+  //   const [error, setError] = useState(null);
+  //   const [isLoading, setIsLoading] = useState(false);
+
+  //   const fetchMoviesHandler = useCallback(async () => {
+  //     setIsLoading(true);
+  //     setError(null);
+
+  //     try {
+  //       const response = await fetch("https://swapi.dev/api/films");
+  //       if (!response.ok) {
+  //         throw new Error("Something Went Wrong...Retrying");
+  //       }
+
+  //       const data = await response.json();
+
+  //       const transformedMovies = data.results.map((movieData) => {
+  //         return {
+  //           id: movieData.episode_id,
+  //           title: movieData.title,
+  //           openingText: movieData.opening_crawl,
+  //           releaseDate: movieData.release_date,
+  //           directorName: movieData.producer,
+  //         };
+  //       });
+
+  //       setMovies(transformedMovies);
+  //     } catch (error) {
+  //       setError(error.message);
+  //     }
+  //     setIsLoading(false);
+  //   }, []);
+
+  //   useEffect(() => {
+  //     fetchMoviesHandler();
+  //   }, [fetchMoviesHandler]);
+
+  //   let content = <p>Found no movies.</p>;
+
+  //   if (movies.length > 0) {
+  //     content = <MovieList movies={movies} />;
+  //   }
+
+  //   if (error) {
+  //     content = <p>{error}</p>;
+  //   }
+
+  //   if (isLoading) {
+  //     content = <p>Loading....</p>;
+  //   }
+
+  //   return (
+  //     <React.Fragment>
+  //       <section>
+  //         <button onClick={fetchMoviesHandler} className="button">
+  //           Fetch Movies
+  //         </button>
+  //       </section>
+  //       <section>{content}</section>
+  //     </React.Fragment>
+  //   );
+  // }
+
+  const [data, setData] = useState([]);
+
+  // exmaple 1:fetching data from on API
+  useEffect(() => {
+    fetch("https://api.example.com/data")
+      .then((response) => response.json())
+      .then((data) => setData(data));
+
+    //cleaup function (optional)
+    return () => {
+      console.log("component will unmount");
+    };
+  }, []);
+
+  //exmaple 2 subscriibing to events
 
   useEffect(() => {
-    if (retryCount > 0) {
-      // Start the retry timer
-      const timer = setTimeout(fetchMoviesHandler, 5000);
-      setRetryTimer(timer);
-    }
-
-    return () => {
-      // Clear the retry timer on component unmount or when retryCount changes
-      clearTimeout(retryTimer);
+    const handleClick = () => {
+      console.log("Button clicked");
     };
-  }, [retryCount]);
+    window.addEventListener("click", handleClick);
 
-  async function fetchMoviesHandler() {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch("https://swapi.dev/api/film");
+    //clean up function
 
-      if (!response.ok) {
-        throw new Error("Something Went Wrong...Retrying");
-      }
-
-      const data = await response.json();
-
-      const transformedMovies = data.results.map((movieData) => ({
-        id: movieData.episode_id,
-        title: movieData.title,
-        openingText: movieData.opening_crawl,
-        releaseDate: movieData.release_date,
-        directorName: movieData.producer,
-      }));
-
-      setIsLoading(false);
-      setError(null);
-      setMovies(transformedMovies);
-      setRetryCount(0); // Reset retry count on successful response
-    } catch (error) {
-      setError(error.message);
-      setRetryCount((prevCount) => prevCount + 1); // Increment retry count on error
+    return () =>{
+      
     }
-    setIsLoading(false);
-  }
+  });
 
-  function cancelRetryHandler() {
-    clearTimeout(retryTimer);
-    setRetryCount(0);
-  }
-
-  return (
-    <React.Fragment>
-      <section>
-        <button onClick={fetchMoviesHandler} className="button">
-          Fetch Movies
-        </button>
-        {retryCount > 0 && (
-          <button onClick={cancelRetryHandler} className="button">
-            Cancel Retry
-          </button>
-        )}
-      </section>
-      <section>
-        {!isLoading && movies.length > 0 && <MovieList movies={movies} />}
-        {!isLoading && movies.length === 0 && !error && <p>Found no movies</p>}
-        {isLoading && <p>Loading...</p>}
-        {!isLoading && error && <p>{error}</p>}
-      </section>
-    </React.Fragment>
-  );
+  return <div></div>;
 }
-
 export default App;
